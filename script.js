@@ -6,13 +6,13 @@ var spock = document.getElementById("spock");
 var circ = document.getElementsByClassName('circles');
 var victory = 0;
 var temp;
-var score=localStorage.getItem('score',score);
-if(score=="function getItem() { [native code] }")
-score=0;
+var points=localStorage.getItem('points',points);
+if(points==undefined)
+points=0;
 var choose = 0;
 var rules = document.getElementById("rules-board");
 var cpu = document.getElementsByClassName('cpu-circle')[0];
-document.getElementsByClassName('number')[0].innerHTML=localStorage.getItem('score');
+document.getElementsByClassName('number')[0].innerHTML=localStorage.getItem('points');
 var cpu_icons = { 0: "url(images/icon-scissors.svg)", 1: "url(images/icon-paper.svg)", 2: "url(images/icon-rock.svg)", 3: "url(images/icon-lizard.svg)", 4: "url(images/icon-spock.svg)" };
 
 var topp={0:"22px",1:"150px",2:"335px",3:"335px",4:"150px"};
@@ -93,17 +93,17 @@ function main(z) {
 
                 var cpu_value = Math.floor(Math.random() * 5);
                 var result;
-                if (cpu_value == (choose + 1) % 5 || cpu_value == (choose + 3) % 5) { victory= 1; score++;
-localStorage.setItem("score",score);
+                if (cpu_value == (choose + 1) % 5 || cpu_value == (choose + 3) % 5) { victory= 1; points++;
+localStorage.setItem("points",points);
                 result="YOU WIN";
                 }
                 else if (cpu_value == choose){
                  result="IT'S A DRAW"
                 victory = undefined;
                 }
-                else {score--
+                else {points--
                     result="YOU LOSE";
-localStorage.setItem("score",score);
+localStorage.setItem("points",points);
             victory=0;
                 };
                var clock= setInterval(delay, 4000);
@@ -120,7 +120,7 @@ localStorage.setItem("score",score);
                     document.getElementsByClassName('result-board')[0].style.opacity="1";
                     document.getElementsByClassName('result-board')[0].style.zIndex="5";
                     document.getElementsByClassName('result-board')[0].getElementsByTagName('p')[0].innerHTML=result;
-                    document.getElementsByClassName('number')[0].innerHTML = localStorage.getItem('score');
+                    document.getElementsByClassName('number')[0].innerHTML = localStorage.getItem('points');
                     var wincirc=document.getElementsByClassName('win-gradient')[0];
                     if(victory==1){
                         wincirc.style.opacity="1";
@@ -175,4 +175,4 @@ localStorage.setItem("score",score);
 
     }
 }
-localStorage.setItem('score',score);
+localStorage.setItem('points',points);
