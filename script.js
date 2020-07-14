@@ -6,9 +6,10 @@ var spock = document.getElementById("spock");
 var circ = document.getElementsByClassName('circles');
 var victory = 0;
 var temp;
-var points=localStorage.getItem('points',points);
-if(points==undefined)
+var points=localStorage.getItem('points');
+if(!(points>0 || points<0 || points==0))
 points=0;
+localStorage.setItem('points',points);
 var choose = 0;
 var rules = document.getElementById("rules-board");
 var cpu = document.getElementsByClassName('cpu-circle')[0];
